@@ -1,0 +1,7 @@
+Componentes react são função javaScripty que retorna HTML.
+Se não retornar HTML, pode ser considerado um HOOK
+
+Todas funções "use" são consideradas HOOK - React HOOK
+
+Componentes funcionarios são funções que retornam HTML e precisam iniciar o nome com letra maiuscula para ser componente.
+
