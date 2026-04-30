@@ -1,18 +1,43 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-function App() {
+interface ListItem {
+  id: number
+  label: string
+}
 
-  const [count, setCount] = useState(0)
+export function App() {
+  const [list, setList] = useState<ListItem[]>([])
+  const [newItem, setNewItem] = useState('')
+
+  const addItem = () => {
+    if (newItem !== '') {
+      setList([...list, { id: list.length + 1, label: newItem }])
+      setNewItem('')
+    }
+  }
+
+  const removeOCC = (id: number) => {
+    if (list.length > 0){
+      setList([...list.filter((item) => item.id !== id)])
+    }
+  }
 
   return (
     <div>
-      <p>Hello World</p>
+      <p>Lista de Tarefas</p>
+      <input
+        value={newItem}
+        onChange={(e) => setNewItem(e.target.value)}
+      />
 
-      <button onClick={() => setCount(count + 1)}>
-        count {count}
-      </button>
+      <button onClick={() => {addItem()}}>Adicionar</button>
+
+      <ol>
+        {list.map((listItem) => (
+          <li key={listItem.id}>{listItem.label}<button onClick={() => removeOCC(listItem.id)}>Remover</button></li>
+        ))}
+      </ol>
+
     </div>
   )
 }
-
-export default App
